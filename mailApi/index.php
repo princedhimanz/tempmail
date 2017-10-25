@@ -1,29 +1,30 @@
 <?php
 require_once 'vendor/autoload.php';
-$header = array('Authorization' => 'Basic OGM4ODA4YTAtYTQ3ZC00MDkxLTllM2QtODhlMDYwM2ViMzY5OmplWTJTVFliMg==' ,'Accept' => 'application/json', 'Host' => 'api2.temp-mail.org', 'Connection' => 'Keep-Alive');
-
+$header = array(
+    "X-Mashape-Key" => "PUT YOUR MASHAPE API KEY HERE",
+    "Accept" => "application/json"
+  )
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 	$url = $_GET['url'];
 	if ($url == 'change') {
 		echo "Change Email Address";
 	}
 	elseif ($url == 'randomMail') {
-		$response = Unirest\Request::get('http://api2.temp-mail.org/request/domains/format/json',$header);
+		$response = Unirest\Request::get("https://privatix-temp-mail-v1.p.mashape.com/request/domains/",$header
+);
 		$domains = $response->body;
 		$rd = $domains[array_rand($domains)];
 		echo rand_str().''.$rd;
 	}
-	elseif ($url == 'refresh') {
-		echo "Getting New Emails";
-	}
 	elseif ($url == 'domains') {
-		$response = Unirest\Request::get('http://api2.temp-mail.org/request/domains/format/json',$header);
+		$response = Unirest\Request::get("https://privatix-temp-mail-v1.p.mashape.com/request/domains/",$header
+);
 		echo json_encode($response->body);
 	}
 	elseif ($url == 'getMails') {
 		$mail = explode('getMails',$_SERVER['REQUEST_URI']);
 		$rMail = substr($mail[1],1,strlen($mail[1]) - 1);
-		$response = Unirest\Request::get('http://api2.temp-mail.org/request/mail/id/'.md5($rMail).'/format/json',$header);
+		$response = Unirest\Request::get('https://privatix-temp-mail-v1.p.mashape.com/request/mail/id/'.md5($rMail).'/',$header);
 		$out = array();
 		$code = $response->code;
 		if($code == '200')

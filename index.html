@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Materialize</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <style type="text/css">
+    body {
+        background-color: #f5f5f5;
+    }
+
+    .collection-item {
+        cursor: context-menu;
+    }
+
+    .title {
+        font-size: 1.2em!important;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 1.08em;
+        font-weight: 500;
+    }
+
+    .p_txt {
+        color: grey;
+    }
+
+    .chip {
+        height: auto;
+        font-size: 1.1em!important;
+        color: #fff;
+        padding: 5px 54px!important;
+        border-radius: 25px!important;
+        background-color: rgba(0, 0, 0, 0.1);
+        display: none;
+        margin-left: 20%;
+    }
+
+    .navFabs {
+        display: none;
+    }
+
+    .card {
+        transition: 0.2s;
+    }
+
+    .toolText {
+        width: 100%;
+        position: absolute;
+        top: 32%;
+        right: 1%
+    }
+    .fixed-action-btn.toolbar ul li a i {
+    line-height: normal!important;
+}
+.collection-item:hover{
+	background-color: rgba(128, 128, 128, 0.1)!important;
+	transition: 0.5s;
+}
+.modal.modal-fixed-footer {
+    padding: 0px;
+    height: 50%;
+}
+.dropdown-content {
+    background-color: #fff;
+    margin: 0;
+    display: none;
+    min-width: 100px;
+    height: 150px;
+    overflow-y: auto;
+    opacity: 0;
+    position: absolute;
+    z-index: 999;
+    will-change: width, height;
+}
+#mailList{
+    display: none;
+}
+.mailTxt{
+    display: none;
+}
+    </style>
+
+</head>
+
+<body>
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <div class="user-view">
+                <div class="background red">
+                </div>
+                <a href="#!user"><img class="circle" src="profile.jpg"></a>
+                <a href="#!name"><span class="white-text name">Tempmail</span></a>
+                <a href="#!email"><span class="white-text email">tempmail@gmail.com</span></a>
+            </div>
+        </li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">home</i>Home</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">help</i>Help</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">info</i>About</a></li>
+        <li><a class="waves-effect" href="#!"><i class="material-icons">contact_mail</i>Contact</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper" style="background: rgb(229, 57, 53);">
+                <a style="padding-left: 3%;" href="#" class="brand-logo hide-on-med-and-down">Tempmail</a>
+                <a style="" href="#" class="brand-logo hide-on-large-only">Tempmail</a>
+                <span class="chip hide-on-med-and-down">temamail@gmail.com</span>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+                <div class="navFabs container hide-on-med-and-down">
+                    <a id="newBtn" onclick="newBtn()" class="btn-floating btn-large halfway-fab waves-effect waves-light hoverable blue-grey tooltipped" data-position="right" data-delay="50" data-tooltip="Change Email" style="margin-right: 15%;" "><i class="material-icons ">create</i></a>
+                            <a id="delBtn" onclick="delBtn()" class="btn-floating btn-large halfway-fab waves-effect waves-light hoverable blue-grey tooltipped " data-position="bottom" data-delay="50 " data-tooltip="Delete Email " style="margin-right: 21%; "><i class="material-icons ">delete</i></a>
+                            <a id="copyBtn" onclick="copyBtn()" class="btn-floating btn-large halfway-fab waves-effect waves-light hoverable blue-grey tooltipped " data-position="left" data-delay="50 " data-tooltip="Copy Email " style="margin-right: 27%; "><i class="material-icons ">content_copy</i></a>
+            	</div>
+            </div>
+
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div id="showMail" class="card blue-grey darken-1 ">
+                    <div class="white-text " style="padding: 1.5em; ">
+                        <span id="email" class="card-title center-align">Tempmai@gmail.com</span>
+                        <div class="hide-on-small-only ">
+                            <a id="newBtn" onclick="newBtn()" class="btn-floating btn-large halfway-fab waves-effect waves-light hoverable red tooltipped" data-position="right" data-delay="50 " data-tooltip="Change Email "><i class="material-icons ">create</i></a>
+                            <a id="delBtn" onclick="delBtn()" class="btn-floating btn-large halfway-fab waves-effect waves-light hoverable red tooltipped" data-position="bottom" data-delay="50 " data-tooltip="Delete Email " style="margin-right: 5em; "><i class="material-icons ">delete</i></a>
+                            <a id="copyBtn" onclick="copyBtn()" class="btn-floating btn-large halfway-fab waves-effect waves-light hoverable red tooltipped" data-position="left" data-delay="50" data-tooltip="Copy Email Address" style="margin-right: 10em; "><i class="material-icons ">content_copy</i></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="noEmailTxt" style="margin-top: 10%; color: grey;" class="center">
+  <h4>Inbox is Empty</h4>
+</div>
+            </div>
+        </div>
+        
+    </div>
+    <!--MODAL-->
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <div class="row">
+          <div class="input-field">
+            <input id="email" type="email" >
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field">
+    <select>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+      <option value="4">Option 4</option>
+      <option value="5">Option 5</option>
+      <option value="6">Option 6</option>
+      <option value="7">Option 7</option>
+      <option value="8">Option 8</option>
+      <option value="9">Option 9</option>
+    </select>
+  </div>
+    </div>
+
+</div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+    </div>
+  </div>
+
+    <ul id="mailList" class="collection" style="">
+        
+    </ul>
+    <div class="" id="contCard">
+    </div>
+    <div class="fixed-action-btn hide-on-small-only ">
+        <a id="refBtn" onclick="refBtn()" class="btn-floating waves-effect waves-light btn-large red ">
+      <i class="large material-icons ">refresh</i>
+    </a>
+    </div>
+    <div class="fixed-action-btn toolbar hide-on-large-only">
+        <a id="menu" class="btn-floating btn-large red pulse">
+      <i class="large material-icons">menu</i>
+    </a>
+        <ul>
+            <li class="waves-effect waves-light "><a id="copyBtn" onclick="copyBtn()" href="#! "><i class="material-icons ">content_copy</i><span class="toolText ">Copy</span></a></li>
+            <li class="waves-effect waves-light "><a id="refBtn" onclick="refBtn()" href="#! "><i class="material-icons ">refresh</i><span class="toolText ">Refresh</span></a></li>
+            <li class="waves-effect waves-light "><a id="newBtn" onclick="newBtn()" href="#! "><i class="material-icons ">create</i><span class="toolText ">New</span></a></li>
+            <li class="waves-effect waves-light "><a id="delBtn" onclick="delBtn()" href="#! "><i class="material-icons ">delete</i><span class="toolText ">Delete</span></a></li>
+        </ul>
+    </div>
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="menu">
+        <div class="tap-target-content">
+            <h5>Toolbar</h5>
+            <p>Tap on this button to Change, Copy, Refresh and Delete</p>
+        </div>
+    </div>
+     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript ">    
+    $(document).ready(function() {
+        $('.modal').modal();
+        $('select').material_select();
+        if(checkCookie()){
+            $('#email').text(getCookie('email'));
+            $('.chip').text(getCookie('email'));
+            getMails();
+        }
+        else{
+            $.get('mailApi/randomMail', function(data) {
+            $('#email').text(data);
+            $('.chip').text(data);
+            setCookie('email', data, '1');
+            getMails();
+            });
+
+        }
+        $(".button-collapse ").sideNav({
+            draggable: true
+        });
+        if(window.innerWidth < 768){
+            $('.tap-target').tapTarget('open');
+        }
+        $(window).scroll(function() {
+        	if($(this).scrollTop() > 50){
+        		//console.log(this);
+        		$('.chip').css('display', 'inline-block');
+        		$('.navFabs').show();
+        		$('#showMail').css('transform','translate(0,-100px)')
+        	}
+        	else{
+        		$('.chip').css('display', 'none');
+        		$('.navFabs').hide();
+        		$('#showMail').css('transform','translate(0,0)')
+        	}
+        });
+        if(window.innerWidth > 768){
+            $('#mailList').addClass('container');
+            $('#contCard').addClass('container');
+            $('#modal1 .row').addClass('container')
+        }
+        $(window).resize(function() {
+            if(window.innerWidth > 768){
+            $('#mailList').addClass('container');
+            $('#contCard').addClass('container');
+            $('#modal1 .row').addClass('container')
+        }
+            else{
+                    $('#mailList').removeClass('container');
+                    $('#contCard').removeClass('container');
+                    $('#modal1 .row').removeClass('container')
+            }
+        
+        });
+        
+    })
+    var noti = setInterval(getMails, 30000);
+    function newBtn(){
+        $('#modal1').modal('open');
+        $('#mailList').html('');
+    	Materialize.toast('Email Changed!', 2000)
+    }
+    function delBtn(){
+        $('#showMail').prepend('<div class="progress" style="margin: 0;position:absolute;"><div class="indeterminate red"></div></div>');
+        $.ajax({
+            url: 'mailApi/randomMail',
+            type: 'GET',
+            success: function(r){
+                $('#email').text(r);
+                $('.chip').text(r);
+                setCookie('email', r, 1);
+                $('.progress').hide();
+                Materialize.toast('Email Deleted!', 2000)
+                $('#mailList').html('').hide();
+                $('noEmailTxt').show('fast');
+            },
+            error: function() {
+                Materialize.toast('Failed to Email Deleted!', 2000)
+            }
+        })
+        
+    }
+    function copyBtn(){
+    	try{
+    	 var $temp = $("<input>");
+  		 $("body").append($temp);
+		 $temp.val($('#email').text()).select();
+		 document.execCommand("copy");
+		 $temp.remove();
+    	Materialize.toast('Copied!', 2000)
+    }
+    catch(e){
+    	alert(e);
+    }
+    }
+    function refBtn(){
+    	Materialize.toast('Getting New Mails....', 5000)
+    	
+        getMails();
+    	
+    }
+    function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var mail = getCookie("email");
+    if (mail != "") {
+        return true;
+    } 
+    else{
+        return false;
+    }
+}
+function delete_cookie(name) {
+  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+function getMails(){
+    $('#showMail').prepend('<div class="progress" style="margin: 0;position:absolute;"><div class="indeterminate red"></div></div>');
+    var mail = $('#email').text();
+    var lastId = -1;
+    if($('.collection-item').length != 0){
+        lastId = $('.collection-item').last().attr('data-id');
+    }
+
+    $.ajax({
+            url: 'mailApi/getMails/' + mail,
+            type: 'GET',
+            success: function(r){
+                $('.progress').hide();
+            var res = JSON.parse(r);
+        $.each(res, function(index, val) {
+            $('#noEmailTxt').hide();
+            $('#mailList').show();
+            var fl = val.from.split("")[0];
+            if (lastId < val.id) {
+             $('#mailList').append('<li class="collection-item avatar" data-id="' + val.id + '">         <i class="circle '+clr()+'" style="font-style: normal; " >' + fl + '</i>            <span class="title ">' + val.from +'</span>            <br>            <span class="subtitle">' + val.subject + '</span>            <br>            <span class="p_txt truncate">[PWA Builder] active service worker found, no need to register </span>        </li>');
+             $('#contCard').append('<div class="card mailTxt" id="' + val.id + '"><ul class="collection"><li class="collection-item avatar" style="min-height: auto;"><i class="circle red" style="font-style: normal; " >' + fl + '</i><span class="title ">' + val.from +'</span><br><span class="subtitle">' + val.subject + '</span><br></li><div class="msg" style="padding: 10px 20px;">' + decodeHtml(val.text) + '</div></ul></div>')
+         }
+        });
+                
+            },
+            error: function() {
+                $('.progress').hide();
+            }
+        })
+}
+
+$(document).on('click', '.collection-item', function(){
+    var h = $(this).attr('data-id');
+    window.location.hash = h;
+    console.log(h);   
+    clearInterval(noti);
+
+})
+$(window).on('hashchange', function() {
+  //alert('hash changed to'+ window.location.hash);
+  $('.mailTxt').hide();
+  $('#mailList').hide();
+    if(window.location.hash == '')
+    {
+        $('#mailList').show();
+    }  
+     $(''+window.location.hash+'').show();
+});
+    /*if (navigator.serviceWorker.controller) {
+  console.log('[PWA Builder] active service worker found, no need to register')
+} else {
+
+//Register the ServiceWorker
+  navigator.serviceWorker.register('sw.js', {
+    scope: './'
+  }).then(function(reg) {
+    console.log('Service worker has been registered for scope:'+ reg.scope);
+  });
+}*/
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
+function clr(){
+    var clr = ["red", "pink", "purple", "deep-purple", "indigo", "blue", "teal", "green", "yellow", "orange", "brown", "grey"]
+        var randClr = clr[Math.floor(Math.random()*clr.length)];
+        return randClr;
+}
+    </script>
+</body>
+
+</html>
